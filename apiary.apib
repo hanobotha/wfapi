@@ -1,0 +1,329 @@
+FORMAT: 1A
+HOST: http://platform/
+
+# Workflow Management
+
+API to manage Workflows and Workflows instances.
+
+## Configured Workflow Collection [/api/configuredworkflows/{?skip,limit}]
+A configured workflow is a 'primed' workflow, that is ready to be executed. 
+If not pagination is supplied the first 50 records are returned
+ 
+### List All Configured Workflows [GET]
+
++ Parameters
+    + skip(optional) - number of records to skipe for this page
+    + limit(optional) - number of records to inclued in this page
+
++ Response 200 (application/json)
+        
+        {
+            "items":[
+                {
+                    "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
+                    "configurationName": "ExampleName",
+                    "arguments": [ 
+                        {
+                            "name" : "ExampleArgumentName",
+                            "stateName" : "ExampleStateName",
+                            "value"" : "Free form Json token"
+                        }
+                    ]
+                    "_links":{
+                        "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                        "workflow": "http://platform/api/workflows/WorkflowNameExample",
+                    }
+                }
+            ],
+            "_links":{
+                "previousPage": "http://platform/api/configuredworkflows?skip=100&limit=50"
+                "nextPage": "http://platform/api/configuredworkflows?skip=200&limit=50"
+            }
+        }
+
+### Configure a workflow [POST]
+
+Configuring or 'Priming' a workflow is to take a workflow definition by name, and supply some arguments. 
+You may create your own question using this action. It takes a JSON
+object containing the name of the workflow to prime and a list of armuments.
+
++ Request (application/json)
+
+        {
+            "workflowName": "ExampleWorkflow",
+            "arguments": [
+                {
+                    "name": "ExampleTenantId",
+                    "stateName": "ExampleStateName",
+                    "Value":"ExampleValue"
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: api/configuredworkflows/id
+
+    + Body
+
+            {
+                "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
+                "configurationName": "ExampleName",
+                "arguments": : "ExampleArguments",
+                "_links":{
+                    "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "workflow": "http://platform/api/workflows/WorkflowNameExample"
+                }
+            }
+
+## Configured Workflows [/api/configuredworkflows/{id}]
+A configured workflow is a 'Primed' workflow, that is ready to be executed. 
+
+### Get a specific instance of a Configured Workflows [GET]
++ Parameters
+    + id - Valid URL id of instance
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
+                "configurationName": "ExampleName",
+                "arguments": : "ExampleArguments",
+                "_links":{
+                    "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "workflow": "http://platform/api/workflows/WorkflowNameExample"
+                }
+            }
+        ]
+
+
+### Update a specific instance of a Configured Workflows [PUT]
+
++ Parameters
+    + id - A path variable that is required for a valid URL
+
++ Request (application/json)
+
+        {
+            "arguments": [
+                {
+                    "name": "ExampleTenantId",
+                    "stateName": "ExampleStateName",
+                    "Value":"ExampleValue"
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/id
+
+    + Body
+
+            {
+                "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
+                "configurationName": "ExampleName",
+                "arguments": : "ExampleArguments",
+                "_links":{
+                    "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "workflow": "http://platform/api/workflows/WorkflowNameExample"
+                }
+            }
+
+
+## Workflow Instance Collection [/api/workflowinstances/{?skip,limit}]
+A workflow instance is a running workflow. 
+ 
+### List All Workflow Instance [GET]
+
++ Parameters
+    + skip(optional) - number of records to skipe for this page
+    + limit(optional) - number of records to inclued in this page
+
++ Response 200 (application/json)
+        
+        {
+            "items":[
+                {
+                    "id": "{D9430D11-FCD5-46DC-BFA1-04232C8679F8}",
+                    "name": "ExampleName",
+                    "state": "ExampleState",
+                    "parentId": "null",
+                    "parentState": "null",
+                    "modified": "ISO Datetime example",
+                    "_links":{
+                        "self": "http://platform/api/workflowinstances/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
+                        "workflow": "http://platform/api/workflows/WorkflowNameExample",
+                        "configuredWorkflow": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                        "monitor": "http://platform/monitors/api/D9430D11-FCD5-46DC-BFA1-04232C8679F8"
+                    }
+                }
+            ],
+            "_links":{
+                "previousPage": "http://platform/workflowinstances?skip=100&limit=50"
+                "nextPage": "http://platform/workflowinstances?skip=200&limit=50"
+            }
+        }
+            
+
+### Create a Workflow Instance [POST]
+The following call creates a workflow instance
+
++ Request (application/json)
+
+        {
+            "configuredWorkflowId": "configuredWorkflowId",
+            "parameters": [
+                {
+                    "Parameter1": "Parameter1Value",
+                    "Parameter2": "Parameter2Value",
+                }
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: api/workflowinstances/{id}
+
+    + Body
+
+            {
+                "id": "{D9430D11-FCD5-46DC-BFA1-04232C8679F8}",
+                "name": "ExampleName",
+                "state": "ExampleState",
+                "parentId": "null",
+                "parentState": "null",
+                "modified": "ISO Datetime example",
+                "_links":{
+                    "self": "http://platform/workflowinstances/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
+                    "workflow": "http://platform/workflows/WorkflowNameExample",
+                    "configuredWorkflow": "http://platform/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "monitor": "http://platform/monitors/D9430D11-FCD5-46DC-BFA1-04232C8679F8"
+                }
+            }
+
+### Update a Workflow Instance [PUT]
+The following call will stop/restart/pause a workflow instance
+
++ Request (application/json)
+
+        {
+            "command": "stop/restart/pause",
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: api/workflowinstances/{id}
+
+    + Body
+
+            {
+                "id": "{D9430D11-FCD5-46DC-BFA1-04232C8679F8}",
+                "name": "ExampleName",
+                "state": "ExampleState",
+                "parentId": "null",
+                "parentState": "null",
+                "modified": "ISO Datetime example",
+                "_links":{
+                    "self": "http://platform/workflowinstances/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
+                    "workflow": "http://platform/workflows/WorkflowNameExample",
+                    "configuredWorkflow": "http://platform/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "monitor": "http://platform/monitors/D9430D11-FCD5-46DC-BFA1-04232C8679F8"
+                }
+            }
+
+
+## Workflow Monitoring Collection [/api/monitors/{?skip,limit}]
+The following endpoint should be used to monitor running workflows
+
+### List All Workflow Monitors [GET]
+
++ Parameters
+    + skip(optional) - number of records to skipe for this page
+    + limit(optional) - number of records to inclued in this page
+
++ Response 200 (application/json)
+        
+        {
+            "items":[
+                {
+                    "id": "{id}",
+                    "runningState": "Running",
+                    "currentState": "Step1",
+                    "_links":{
+                        "self": "http://platform/api/monitors/{workflowInstanceId}",
+                        "workflow": "http://platform/api/workflows/{workflowName}",
+                        "configuredWorkflow": "http://platform/api/configuredworkflows/{configuredId}",
+                        "workflowInstance": "http://platform/api/workflowInstance/{workflowInstanceId}",
+                        "result":{
+                            "href":"http://platform/api/results/{workflowInstanceId}/{stepId}"
+                            "numberOfItems":10
+                        }
+                    }
+                }
+            ],
+            "_links":{
+                "previousPage": "http://platform/monitors?skip=100&limit=50"
+                "nextPage": "http://platform/monitors?skip=200&limit=50"
+            }
+        }
+            
+
+
+## Monitoring a single Workflow [/api/monitors/{workflowInstanceId}]
+
+### Monitor Workflow [GET]
++ Response 200 (application/json)
+        
+        {
+            "id": "{workflowInstanceId}",
+            "runningState": "Running",
+            "currentStep": "Step1",
+            "currentStepId": "{stepId}",
+            "_links":{
+                "self": "http://platform/monitors/{workflowInstanceId}",
+                "workflow": "http://platform/workflows/{workflowName}",
+                "configuredWorkflow": "http://platform/configuredworkflows/{configuredId}",
+                "workflowInstance": "http://platform/workflowInstance/{workflowInstanceId}",
+                "result":{
+                    "href":"http://platform/results/{workflowInstanceId}?stepId={stepId}"
+                    "numberOfItems":10
+                }
+            }
+        }
+
+## Workflow Result [/api/result/{workflowInstanceId}/{?stepId,skip,limit}]
+Execute the following call to get the results as generated by a step in the workflow.
+The schema of the objects will be defined on the configuration of the workflow. 
+The full object will be contained in the item key. 
+(The sequence of items cannot be guaranteed)  
+
+### Get Workflow Step Results [GET]
+
++ Response 200 (application/json)
+
+        {
+            "items":[
+                {
+                    "index": 150,
+                    "item":{}
+                },
+                {
+                    "index": 151,
+                    "item":{}
+                },
+            ],
+            "_links":{
+                "previousPage": "http://platform//api/result/{workflowInstanceId}?stepId={stepId}&skip=100&limit=50"
+                "nextPage":  "http://platform//api/result/{workflowInstanceId}?stepId={stepId}&skip=200&limit=50"
+            }
+        }
