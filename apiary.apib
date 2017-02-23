@@ -5,11 +5,13 @@ HOST: http://platform/
 
 API to manage Workflows and Workflows instances.
 
-## Configured Workflow Collection [/api/configuredworkflows/{?skip,limit}]
-A configured workflow is a 'primed' workflow, that is ready to be executed. 
-If not pagination is supplied the first 50 records are returned
- 
-### List All Configured Workflows [GET]
+## Primed Workflow Collection [/api/primedworkflows/{?skip,limit}]
+A primed workflow represents the combination of a workflow definition and any arguments required to run the workflow
+Example: A workflow 'GetAllMailboxes' has been defined. It takes a tenant Id as a parameter. 
+A primed workflow would be the combination of the 'GetAllMailboxes' workflow and the an argument for the parameter(tenandId = {xyz}).
+   
+
+### List All Primed Workflows [GET]
 
 + Parameters
     + skip(optional) - number of records to skipe for this page
@@ -20,32 +22,30 @@ If not pagination is supplied the first 50 records are returned
         {
             "items":[
                 {
-                    "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
+                    "id": "{id}",
                     "configurationName": "ExampleName",
                     "arguments": [ 
                         {
-                            "name" : "ExampleArgumentName",
+                            "name" : "ExampleParameterName",
                             "stateName" : "ExampleStateName",
                             "value"" : "Free form Json token"
                         }
                     ]
                     "_links":{
-                        "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                        "self": "http://platform/api/primedworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
                         "workflow": "http://platform/api/workflows/WorkflowNameExample",
                     }
                 }
             ],
             "_links":{
-                "previousPage": "http://platform/api/configuredworkflows?skip=100&limit=50"
-                "nextPage": "http://platform/api/configuredworkflows?skip=200&limit=50"
+                "previousPage": "http://platform/api/primedworkflows?skip=100&limit=50"
+                "nextPage": "http://platform/api/primedworkflows?skip=200&limit=50"
             }
         }
 
-### Configure a workflow [POST]
+### Prime a workflow [POST]
 
-Configuring or 'Priming' a workflow is to take a workflow definition by name, and supply some arguments. 
-You may create your own question using this action. It takes a JSON
-object containing the name of the workflow to prime and a list of armuments.
+To prime a workflow is to combine a workflow definition by name with an argument for its required parameters. 
 
 + Request (application/json)
 
@@ -64,24 +64,24 @@ object containing the name of the workflow to prime and a list of armuments.
 
     + Headers
 
-            Location: api/configuredworkflows/id
+            Location: api/primedworkflows/id
 
     + Body
 
             {
-                "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
+                "id": "{id}",
                 "configurationName": "ExampleName",
                 "arguments": : "ExampleArguments",
                 "_links":{
-                    "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "self": "http://platform/api/primedworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
                     "workflow": "http://platform/api/workflows/WorkflowNameExample"
                 }
             }
 
-## Configured Workflows [/api/configuredworkflows/{id}]
-A configured workflow is a 'Primed' workflow, that is ready to be executed. 
+## Primed Workflows [/api/primedworkflows/{id}]
+A primed workflow represents the combination of a workflow definition and any arguments required to run the workflow
 
-### Get a specific instance of a Configured Workflows [GET]
+### Get a specific instance of a Primed Workflow [GET]
 + Parameters
     + id - Valid URL id of instance
 
@@ -93,14 +93,16 @@ A configured workflow is a 'Primed' workflow, that is ready to be executed.
                 "configurationName": "ExampleName",
                 "arguments": : "ExampleArguments",
                 "_links":{
-                    "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "self": "http://platform/api/primedworkflows/{id}",
                     "workflow": "http://platform/api/workflows/WorkflowNameExample"
                 }
             }
         ]
 
 
-### Update a specific instance of a Configured Workflows [PUT]
+### Update a specific instance of a Primed Workflows [PUT]
+Updating a primed workflow is only allowed before a primed workflow is started.
+A primed workflow can only be updated by supplying alternative arguments for it's parameters
 
 + Parameters
     + id - A path variable that is required for a valid URL
@@ -112,7 +114,7 @@ A configured workflow is a 'Primed' workflow, that is ready to be executed.
                 {
                     "name": "ExampleTenantId",
                     "stateName": "ExampleStateName",
-                    "Value":"ExampleValue"
+                    "Value":"AlternativeExampleValue"
                 }
             ]
         }
@@ -126,11 +128,11 @@ A configured workflow is a 'Primed' workflow, that is ready to be executed.
     + Body
 
             {
-                "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
+                "id": "{id}",
                 "configurationName": "ExampleName",
                 "arguments": : "ExampleArguments",
                 "_links":{
-                    "self": "http://platform/api/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
+                    "self": "http://platform/api/primedworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
                     "workflow": "http://platform/api/workflows/WorkflowNameExample"
                 }
             }
