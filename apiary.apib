@@ -8,7 +8,7 @@ API to manage Workflows and Workflows instances.
 ## Primed Workflow Collection [/api/primedworkflows/{?skip,limit}]
 A primed workflow represents the combination of a workflow definition and any arguments required to run the workflow
 Example: A workflow 'GetAllMailboxes' has been defined. It takes a tenant Id as a parameter. 
-A primed workflow would be the combination of the 'GetAllMailboxes' workflow and the an argument for the parameter(tenandId = {xyz}).
+A primed workflow is the combination of the 'GetAllMailboxes' workflow and an argument for the parameter(tenandId = {xyz}).
    
 
 ### List All Primed Workflows [GET]
@@ -317,11 +317,69 @@ The full object will be contained in the item key.
             "items":[
                 {
                     "index": 150,
-                    "item":{}
+                    "item":{
+                            "Database": "L2-EXC2010-01-ServiceAccounts",
+                            "ExchangeGuid": "98072400-a1ff-4714-afed-75fa53f81347",
+                            "IsMailboxEnabled": "TRUE",
+                            "SamAccountName": "Administrator",
+                            "ServerLegacyDN": "/o=L2/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Configuration/cn=Servers/cn=L2-EXC2010-01",
+                            "ServerName": "l2-exc2010-01",
+                            "Office": "",
+                            "UserPrincipalName": "Administrator@lab.quadrotech-it.com",
+                            "ArchiveDatabase": "",
+                            "ArchiveGuid": "00000000-0000-0000-0000-000000000000",
+                            "ArchiveName": "",
+                            "ArchiveQuota": "Unlimited",
+                            "ArchiveWarningQuota": "Unlimited",
+                            "ArchiveDomain": "",
+                            "ArchiveStatus": "None",
+                            "ArchiveState": "None",
+                            "DisabledArchiveDatabase": "",
+                            "DisabledArchiveGuid": "00000000-0000-0000-0000-000000000000",
+                            "WhenMailboxCreated": "16.04.2015 11:10",
+                            "OrganizationalUnit": "l2.lab.quadrotech-it.com/Users",
+                            "DisplayName": "Administrator",
+                            "EmailAddresses": "smtp:Administrator@quadrotechlab3.mail.onmicrosoft.com SMTP:Administrator@lab.quadrotech-it.com smtp:Administrator@l2.lab.quadrotech-it.com",
+                            "LegacyExchangeDN": "/o=L2/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=Administrator",
+                            "PrimarySmtpAddress": "Administrator@lab.quadrotech-it.com",
+                            "RecipientType": "UserMailbox",
+                            "Name": "Administrator",
+                            "Guid": "25a8be7b-a48e-4a7f-9897-4307893687f3",
+                            "Id": "l2.lab.quadrotech-it.com/Users/Administrator"
+                    }
                 },
                 {
                     "index": 151,
-                    "item":{}
+                    "item":{
+                            "Database": "Mailbox Database 1383866539",
+                            "ExchangeGuid": "46f72e4b-0174-44d4-99b8-472ef3d9378a",
+                            "IsMailboxEnabled": "TRUE",
+                            "SamAccountName": "SM_c821a34f4cc543dba",
+                            "ServerLegacyDN": "/o=L2/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Configuration/cn=Servers/cn=L2-EXC2010-01",
+                            "ServerName": "l2-exc2010-01",
+                            "Office": "",
+                            "UserPrincipalName": "DiscoverySearchMailbox{D919BA05-46A6-415f-80AD-7E09334BB852}@lab.quadrotech-it.com",
+                            "ArchiveDatabase": "",
+                            "ArchiveGuid": "00000000-0000-0000-0000-000000000000",
+                            "ArchiveName": "",
+                            "ArchiveQuota": "Unlimited",
+                            "ArchiveWarningQuota": "Unlimited",
+                            "ArchiveDomain": "",
+                            "ArchiveStatus": "None",
+                            "ArchiveState": "None",
+                            "DisabledArchiveDatabase": "",
+                            "DisabledArchiveGuid": "00000000-0000-0000-0000-000000000000",
+                            "WhenMailboxCreated": "24.03.2015 10:38",
+                            "OrganizationalUnit": "l2.lab.quadrotech-it.com/Users",
+                            "DisplayName": "Discovery Search Mailbox",
+                            "EmailAddresses": "smtp:DiscoverySearchMailbox{D919BA05-46A6-415f-80AD-7E09334BB852}@quadrotechlab3.mail.onmicrosoft.com SMTP:DiscoverySearchMailbox{D919BA05-46A6-415f-80AD-7E09334BB852}@lab.quadrotech-it.com smtp:DiscoverySearchMailbox{D919BA05-46A6-415f-80AD-7E09334BB852}@l2.lab.quadrotech-it.com",
+                            "LegacyExchangeDN": "/o=L2/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=DiscoverySearchMailbox {D919BA05-46A6-415f-80AD-7E0933",
+                            "PrimarySmtpAddress": "DiscoverySearchMailbox{D919BA05-46A6-415f-80AD-7E09334BB852}@lab.quadrotech-it.com",
+                            "RecipientType": "UserMailbox",
+                            "Name": "DiscoverySearchMailbox {D919BA05-46A6-415f-80AD-7E09334BB852}",
+                            "Guid": "ee8f967e-d623-46ea-9927-79222ab92b83",
+                            "Id": "l2.lab.quadrotech-it.com/Users/DiscoverySearchMailbox {D919BA05-46A6-415f-80AD-7E09334BB852}"
+                    }
                 },
             ],
             "_links":{
