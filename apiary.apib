@@ -38,7 +38,7 @@ A primed workflow is the combination of the 'GetAllMailboxes' workflow and an ar
                     "href": "/api/primedworkflows{?skip,limit}",
                     "templated": true
                 },
-                "primedworkflow": [
+                "_items": [
                     {
                         "href": "/api/primedworkflows/e3936a80-92fd-e611-98ec-e0c3691abae0"
                     },
@@ -57,7 +57,7 @@ A primed workflow is the combination of the 'GetAllMailboxes' workflow and an ar
                 ]
             },
             "_embedded": {
-                "primedworkflow": [
+                "_items": [
                     {
                         "Id": "e3936a80-92fd-e611-98ec-e0c3691abae0",
                         "WorkflowName": "PostMailboxesA",
@@ -135,7 +135,7 @@ To prime a workflow is to combine a workflow definition by name with an argument
 
         {
             "workflowName": "ExampleWorkflow",
-            "arguments": [
+            "arguments": [,pre 
                 {
                     "name": "ExampleTenantId",
                     "stateName": "ExampleStateName",
