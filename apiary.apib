@@ -135,7 +135,7 @@ To prime a workflow is to combine a workflow definition by name with an argument
 
         {
             "workflowName": "ExampleWorkflow",
-            "arguments": [,pre 
+            "arguments": [
                 {
                     "name": "ExampleTenantId",
                     "stateName": "ExampleStateName",
@@ -153,17 +153,17 @@ To prime a workflow is to combine a workflow definition by name with an argument
     + Body
        
             {
-                "Id": "e3936a80-92fd-e611-98ec-e0c3691abae0",
-                "WorkflowName": "PostMailboxesA",
-                "Arguments": "[]",
-                "_links": {
-                    "self": {
-                    "href": "/api/primedworkflows/e3936a80-92fd-e611-98ec-e0c3691abae0"
+              "Id": "99fc1b55-b9fd-e611-98ec-e0c3691abae0",
+              "WorkflowName": "PostMailboxesA",
+              "Arguments": "[{\"Name\":\"ExampleTenantId\",\"StateName\":\"ExampleStateName\",\"Value\":\"ExampleValue\"}]",
+              "_links": {
+                "self": {
+                  "href": "/api/primedworkflows/99fc1b55-b9fd-e611-98ec-e0c3691abae0"
                 },
-                    "worflow": {
-                    "href": "/api/workflows/PostMailboxesA"
-                    }
+                "worflow": {
+                  "href": "/api/workflows/PostMailboxesA"
                 }
+              }
             }
 
 ## Primed Workflows [/api/primedworkflows/{id}]
