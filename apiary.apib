@@ -4,6 +4,8 @@ HOST: http://platform/
 # Workflow Management
 
 API to manage Workflows and Workflows instances.
+All request should contain the Accept header with a value of application/hal+json
+
 
 ## Primed Workflow Collection [/api/primedworkflows/{?skip,limit}]
 A primed workflow represents the combination of a workflow definition and any arguments required to run the workflow
@@ -67,14 +69,18 @@ To prime a workflow is to combine a workflow definition by name with an argument
             Location: api/primedworkflows/id
 
     + Body
-
+       
             {
-                "id": "{id}",
-                "configurationName": "ExampleName",
-                "arguments": : "ExampleArguments",
-                "_links":{
-                    "self": "http://platform/api/primedworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
-                    "workflow": "http://platform/api/workflows/WorkflowNameExample"
+                "Id": "e3936a80-92fd-e611-98ec-e0c3691abae0",
+                "WorkflowName": "PostMailboxesA",
+                "Arguments": "[]",
+                "_links": {
+                    "self": {
+                    "href": "/api/primedworkflow/e3936a80-92fd-e611-98ec-e0c3691abae0"
+                },
+                    "worflow": {
+                    "href": "/api/workflows/PostMailboxesA"
+                    }
                 }
             }
 
@@ -90,7 +96,7 @@ A primed workflow represents the combination of a workflow definition and any ar
         [
             {
                 "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
-                "configurationName": "ExampleName",
+                "workflowName": "ExampleName",
                 "arguments": : "ExampleArguments",
                 "_links":{
                     "self": "http://platform/api/primedworkflows/{id}",
