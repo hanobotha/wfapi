@@ -175,18 +175,19 @@ A primed workflow represents the combination of a workflow definition and any ar
 
 + Response 200 (application/json)
 
-        [
-            {
-                "id": "{94BC55CE-0A4F-4E96-9988-000956DA831A}",
-                "workflowName": "ExampleName",
-                "arguments": : "ExampleArguments",
-                "_links":{
-                    "self": "http://platform/api/primedworkflows/{id}",
-                    "workflow": "http://platform/api/workflows/WorkflowNameExample"
-                }
+        {
+          "Id": "99fc1b55-b9fd-e611-98ec-e0c3691abae0",
+          "WorkflowName": "PostMailboxesA",
+          "Arguments": "[{\"Name\":\"ExampleTenantId\",\"StateName\":\"ExampleStateName\",\"Value\":\"ExampleValue\"}]",
+          "_links": {
+            "self": {
+              "href": "/api/primedworkflows/99fc1b55-b9fd-e611-98ec-e0c3691abae0"
+            },
+            "worflow": {
+              "href": "/api/workflows/PostMailboxesA"
             }
-        ]
-
+          }
+        }
 
 ### Update a specific instance of a Primed Workflows [PUT]
 Updating a primed workflow is only allowed before a primed workflow is started.
@@ -200,9 +201,9 @@ A primed workflow can only be updated by supplying alternative arguments for it'
         {
             "arguments": [
                 {
-                    "name": "ExampleTenantId",
-                    "stateName": "ExampleStateName",
-                    "Value":"AlternativeExampleValue"
+                    "name": "NewParameter",
+                    "stateName": "ExampleStateNameNew",
+                    "Value":"NewValue"
                 }
             ]
         }
@@ -211,20 +212,22 @@ A primed workflow can only be updated by supplying alternative arguments for it'
 
     + Headers
 
-            Location: /questions/id
+            Location: /api/primedworkflows/id
 
     + Body
 
             {
-                "id": "{id}",
-                "configurationName": "ExampleName",
-                "arguments": : "ExampleArguments",
-                "_links":{
-                    "self": "http://platform/api/primedworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
-                    "workflow": "http://platform/api/workflows/WorkflowNameExample"
+                "Id": "99fc1b55-b9fd-e611-98ec-e0c3691abae0",
+                "WorkflowName": "PostMailboxesA",
+                "Arguments": "[{\"Name\":\"NewParameter\",\"StateName\":\"ExampleStateNameNew\",\"Value\":\"NewValue\"}]",
+                "_links": {
+                "self": {
+                    "href": "/api/primedworkflows/99fc1b55-b9fd-e611-98ec-e0c3691abae0"
+                },
+                "worflow": {
+                    "href": "/api/workflows/PostMailboxesA"
                 }
             }
-
 
 ## Workflow Instance Collection [/api/workflowinstances/{?skip,limit}]
 A workflow instance is a running workflow. 
