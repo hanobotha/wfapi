@@ -131,6 +131,8 @@ A primed workflow is the combination of the 'GetAllMailboxes' workflow and an ar
 
 To prime a workflow is to combine a workflow definition by name with an argument for its required parameters. 
 
+The stateName is only needed for parameters that are specific to a particular state, otherwise the argument 
+can be set to null. 
 + Request (application/json)
 
         {
@@ -138,7 +140,7 @@ To prime a workflow is to combine a workflow definition by name with an argument
             "arguments": [
                 {
                     "name": "ExampleTenantId",
-                    "stateName": "ExampleStateName",
+                    "stateName": null,
                     "Value":"ExampleValue"
                 }
             ]
