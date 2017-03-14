@@ -360,14 +360,14 @@ The following endpoint should be used to monitor running workflows
                         "configuredWorkflow": "http://platform/api/configuredworkflows/{configuredId}",
                         "workflowInstance": "http://platform/api/workflowInstance/{workflowInstanceId}",
                         "result":{
-                            "href":"http://platform/api/results/{workflowInstanceId}/{stepId}"
+                            "href":"http://platform/api/results/{workflowInstanceId}/{stepId}",
                             "numberOfItems":10
                         }
                     }
                 }
             ],
             "_links":{
-                "previousPage": "http://platform/monitors?skip=100&limit=50"
+                "previousPage": "http://platform/monitors?skip=100&limit=50",
                 "nextPage": "http://platform/monitors?skip=200&limit=50"
             }
         }
@@ -390,7 +390,7 @@ The following endpoint should be used to monitor running workflows
                 "configuredWorkflow": "http://platform/configuredworkflows/{configuredId}",
                 "workflowInstance": "http://platform/workflowInstance/{workflowInstanceId}",
                 "result":{
-                    "href":"http://platform/results/{workflowInstanceId}?stepId={stepId}"
+                    "href":"http://platform/results/{workflowInstanceId}?stepId={stepId}",
                     "numberOfItems":10
                 }
             }
