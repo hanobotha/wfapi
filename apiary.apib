@@ -290,17 +290,19 @@ The following call creates a workflow instance
     + Body
 
             {
-                "id": "{D9430D11-FCD5-46DC-BFA1-04232C8679F8}",
+                "id": "{workflowInstanceId}",
                 "name": "ExampleName",
-                "state": "ExampleState",
-                "parentId": "null",
-                "parentState": "null",
+                "currentStepName": "ExampleState",
+                "currentStepId": "{stepId}",
+                "parentId": "{parentId|null}",
+                "parentStepId": "{parentStepId|null}",
                 "modified": "ISO Datetime example",
                 "_links":{
-                    "self": "http://platform/workflowinstances/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
+                    "self": "http://platform/workflowinstances/{workflowInstanceId}",
                     "workflow": "http://platform/workflows/WorkflowNameExample",
-                    "configuredWorkflow": "http://platform/configuredworkflows/94BC55CE-0A4F-4E96-9988-000956DA831A",
-                    "monitor": "http://platform/monitors/D9430D11-FCD5-46DC-BFA1-04232C8679F8"
+                    "steps": "http://platform/workflowsteps/{workflowInstanceId}",
+                    "configuredWorkflow": "http://platform/configuredworkflows/{configuredWorkflowId}",
+                    "monitor": "http://platform/monitors/{workflowInstanceId}"
                 }
             }
 
