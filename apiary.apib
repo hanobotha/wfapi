@@ -245,7 +245,7 @@ A workflow instance is a running workflow.
         {
             "items":[
                 {
-                    "id": "{D9430D11-FCD5-46DC-BFA1-04232C8679F8}",
+                    "id": "D9430D11-FCD5-46DC-BFA1-04232C8679F8",
                     "name": "ExampleName",
                     "state": "ExampleState",
                     "parentId": "null",
@@ -290,21 +290,21 @@ The following call creates a workflow instance
     + Body
 
             {
-                "id": "{workflowInstanceId}",
+                "id": "D9430D11-FCD5-46DC-BFA1-04232C8679F8",
                 "name": "ExampleName",
                 "currentStepName": "ExampleState",
                 "currentStepId": "{stepId}",
                 "parentId": "{parentId|null}",
                 "parentStepId": "{parentStepId|null}",
                 "modified": "ISO Datetime example",
-                "workflowName":"WorkflowNameExample"
-                "primedWorkflowId":"{primedWorkflow}"
+                "workflowName":"WorkflowNameExample",
+                "primedWorkflowId":"{primedWorkflow}",
                 "_links":{
-                    "self": "http://platform/workflowinstances/{workflowInstanceId}",
+                    "self": "http://platform/workflowinstances/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
                     "workflow": "http://platform/workflows/WorkflowNameExample",
-                    "steps": "http://platform/workflowsteps/{workflowInstanceId}",
+                    "steps": "http://platform/workflowsteps/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
                     "configuredWorkflow": "http://platform/configuredworkflows/{configuredWorkflowId}",
-                    "monitor": "http://platform/monitors/{workflowInstanceId}"
+                    "monitor": "http://platform/monitors/D9430D11-FCD5-46DC-BFA1-04232C8679F8"
                 }
             }
 
@@ -326,7 +326,7 @@ The following call will stop/restart/pause a workflow instance
     + Body
 
             {
-                "id": "{D9430D11-FCD5-46DC-BFA1-04232C8679F8}",
+                "id": "D9430D11-FCD5-46DC-BFA1-04232C8679F8",
                 "name": "ExampleName",
                 "state": "ExampleState",
                 "parentId": "null",
@@ -378,23 +378,23 @@ The following endpoint should be used to monitor running workflows
             
 
 
-## Monitoring a single Workflow [/api/monitors/{workflowInstanceId}]
+## Monitoring a single Workflow Instance [/api/monitors/{workflowInstanceId}]
 
-### Monitor Workflow [GET]
+### Monitor Workflow Instance [GET]
 + Response 200 (application/json)
         
         {
-            "id": "{workflowInstanceId}",
+            "id": "D9430D11-FCD5-46DC-BFA1-04232C8679F8",
             "runningState": "Running",
             "currentStep": "Step1",
             "currentStepId": "{stepId}",
             "_links":{
-                "self": "http://platform/monitors/{workflowInstanceId}",
+                "self": "http://platform/monitors/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
                 "workflow": "http://platform/workflows/{workflowName}",
                 "configuredWorkflow": "http://platform/configuredworkflows/{configuredId}",
-                "workflowInstance": "http://platform/workflowInstance/{workflowInstanceId}",
+                "workflowInstance": "http://platform/workflowInstance/D9430D11-FCD5-46DC-BFA1-04232C8679F8",
                 "result":{
-                    "href":"http://platform/results/{workflowInstanceId}?stepId={stepId}",
+                    "href":"http://platform/results/D9430D11-FCD5-46DC-BFA1-04232C8679F8?stepId={stepId}",
                     "numberOfItems":10
                 }
             }
